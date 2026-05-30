@@ -1,18 +1,121 @@
-/* === Responsive — Mobile-first polish === */
+/* === Responsive — Smartphone layout & PWA banner === */
 
 @media (max-width: 480px) {
   body {
-    align-items: flex-start;
-    padding-top: max(12px, env(safe-area-inset-top));
-    padding-bottom: max(88px, calc(12px + env(safe-area-inset-bottom)));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding:
+      max(10px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      max(92px, calc(12px + env(safe-area-inset-bottom)))
+      max(12px, env(safe-area-inset-left));
   }
 
   .card {
-    margin-top: 0;
-    margin-bottom: 0;
+    width: 100%;
+    max-width: min(420px, calc(100vw - 24px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+    min-width: 0;
+    margin: auto;
+    flex-shrink: 0;
+    transform: none;
+    opacity: 1;
+    animation: cardFadeIn 0.5s forwards;
   }
 
-  .install-banner {    right: max(10px, env(safe-area-inset-right));
+  .card-header {
+    height: clamp(68px, 19vw, 80px);
+  }
+
+  .avatar-container {
+    top: clamp(24px, 6.5vw, 30px);
+    width: clamp(104px, 29vw, 118px);
+    height: clamp(104px, 29vw, 118px);
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    animation: avatarPopIn 0.65s forwards 0.15s;
+  }
+
+  .card-content {
+    margin-top: clamp(66px, 17vw, 78px);
+    padding-inline: clamp(16px, 4.5vw, 24px);
+  }
+
+  .name {
+    font-size: clamp(1.5rem, 6.8vw, 1.85rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .name--arabic {
+    font-size: clamp(1.58rem, 7vw, 1.95rem);
+  }
+
+  .title {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+  }
+
+  html[dir="rtl"] .title {
+    font-size: 0.78rem;
+  }
+
+  .utility-actions {
+    gap: 0.45rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-section {
+    margin: 1rem 0;
+  }
+
+  .contact-list {
+    gap: 0.65rem;
+  }
+
+  .contact-item-wrapper {
+    gap: 0.55rem;
+  }
+
+  html[dir="rtl"] .contact-item-wrapper {
+    gap: 0.45rem;
+  }
+
+  .contact-text {
+    font-size: clamp(0.74rem, 3.2vw, 0.88rem);
+  }
+
+  html[dir="rtl"] .contact-text--ltr {
+    font-size: clamp(0.68rem, 2.9vw, 0.82rem);
+  }
+
+  .social-section {
+    margin-top: 1rem;
+  }
+
+  .social-links {
+    gap: clamp(0.35rem, 1.8vw, 0.55rem);
+    flex-wrap: wrap;
+    row-gap: 0.45rem;
+    max-width: 100%;
+    padding-inline: 2px;
+  }
+
+  .social-link {
+    width: clamp(38px, 10.5vw, 42px);
+    height: clamp(38px, 10.5vw, 42px);
+    font-size: clamp(0.82rem, 3.6vw, 0.95rem);
+  }
+
+  .slogan {
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+    padding-inline: 4px;
+  }
+
+  .install-banner {
+    right: max(10px, env(safe-area-inset-right));
     bottom: max(10px, env(safe-area-inset-bottom));
     width: min(300px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right)));
   }
@@ -36,6 +139,32 @@
 }
 
 @media (max-width: 360px) {
+  body {
+    padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right));
+  }
+
+  .card {
+    max-width: calc(100vw - 16px - env(safe-area-inset-left) - env(safe-area-inset-right));
+  }
+
+  .card-content {
+    padding-inline: 14px;
+  }
+
+  .utility-actions {
+    gap: 0.35rem;
+  }
+
+  .social-links {
+    gap: 0.3rem;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 0.8rem;
+  }
+
   .install-banner__actions {
     flex-direction: column-reverse;
     align-items: stretch;
@@ -45,19 +174,57 @@
     width: 100%;
     justify-content: center;
   }
+}
 
-  .card {
-    min-width: 0;
-    width: calc(100vw - 24px - env(safe-area-inset-left) - env(safe-area-inset-right));
+@media (max-width: 320px) {
+  .name {
+    font-size: 1.42rem;
+  }
+
+  .name--arabic {
+    font-size: 1.48rem;
+  }
+
+  .contact-text {
+    font-size: 0.7rem;
   }
 }
 
-@media (max-height: 700px) and (max-width: 480px) {
+@media (max-height: 740px) and (max-width: 480px) {
   body {
-    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: max(8px, env(safe-area-inset-top));
   }
 
   .card-content {
-    margin-top: 72px;
+    margin-top: clamp(60px, 16vw, 72px);
+  }
+
+  .contact-section {
+    margin: 0.75rem 0;
+  }
+
+  .social-section {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 480px) {
+  .card-header {
+    height: 60px;
+  }
+
+  .avatar-container {
+    width: 96px;
+    height: 96px;
+    top: 20px;
+  }
+
+  .card-content {
+    margin-top: 56px;
+  }
+
+  .name-container {
+    margin-bottom: 0.5rem;
   }
 }

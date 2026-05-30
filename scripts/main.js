@@ -14,6 +14,7 @@ import { initializeVCardShare } from './vcard-share.js';
 import { initializeTheme } from './theme.js';
 import { loadLabels, initializeI18n, getLabel } from './i18n.js';
 import { initializeVideo } from './video.js';
+import { initializeDeepLinks } from './deep-links.js';
 
 /**
  * Applies install banner labels from i18n + card.json overrides.
@@ -56,6 +57,7 @@ function initializeApp() {
   initializeModal();
   initializeVideo();
   initializeVCardShare();
+  initializeDeepLinks();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
