@@ -539,6 +539,29 @@ html[dir="rtl"] .contact-item-wrapper:has(.contact-actions) {
   outline: none;
 }
 
+/* Email row — real tap target on mobile (display:contents breaks link hits) */
+.contact-item--email {
+  display: grid;
+  grid-column: 1 / 3;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-md);
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--color-text);
+  -webkit-tap-highlight-color: rgba(213, 199, 255, 0.35);
+  cursor: pointer;
+}
+
+html[dir="rtl"] .contact-item--email {
+  gap: 0.55rem;
+}
+
+.contact-item--email:focus-visible .icon-wrapper {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 2px;
+}
+
 .contact-item:focus-visible .icon-wrapper {
   outline: 2px solid var(--color-pink);
   outline-offset: 2px;

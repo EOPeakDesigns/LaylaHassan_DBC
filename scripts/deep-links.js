@@ -6,7 +6,7 @@
 
 import { getCardData } from './card-data.js';
 
-const FALLBACK_DELAY_MS = 1100;
+const FALLBACK_DELAY_MS = 900;
 
 /**
  * @returns {boolean}
@@ -23,11 +23,19 @@ function isAndroid() {
 }
 
 /**
+ * @returns {boolean}
+ */
+function isIOS() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+}
+
+/**
  * Opens a native app URL on mobile; falls back to web if the app is unavailable.
  * @param {string} appUrl
  * @param {string} webUrl
+ * @param {string} [secondaryFallback]
  */
-export function openWithAppFallback(appUrl, webUrl) {
+export function openWithAppFallback(appUrl, webUrl, secondaryFallback) {
   if (!isMobileDevice()) {
     window.open(webUrl, '_blank', 'noopener,noreferrer');
     return;
@@ -47,7 +55,7 @@ export function openWithAppFallback(appUrl, webUrl) {
 
   const timeoutId = window.setTimeout(() => {
     if (!didLeave) {
-      window.location.href = webUrl;
+      window.location.href = secondaryFallback || webUrl;
     }
   }, FALLBACK_DELAY_MS);
 
@@ -66,25 +74,80 @@ export function openWithAppFallback(appUrl, webUrl) {
 }
 
 /**
+ * Opens Gmail compose — app-first on mobile, web on desktop.
  * @param {string} email
- * @returns {{ appUrl: string, webUrl: string }}
  */
-export function getGmailLinks(email) {
+export function openGmailCompose(email) {
+  if (!email) return;
+
   const encoded = encodeURIComponent(email);
-  const webUrl = `https://mail.google.com/mail/?view=cm&to=${encoded}`;
+  const webUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encoded}`;
+  const mailtoUrl = `mailto:${email}`;
+
+  if (!isMobileDevice()) {
+    window.open(webUrl, '_blank', 'noopener,noreferrer');
+    return;
+  }
 
   if (isAndroid()) {
     const fallback = encodeURIComponent(webUrl);
-    return {
-      appUrl: `intent://send/#Intent;action=android.intent.action.SENDTO;scheme=mailto;to=${encoded};package=com.google.android.gm;S.browser_fallback_url=${fallback};end`,
-      webUrl
-    };
+    const intentUrl = `intent://send?to=${encoded}#Intent;scheme=mailto;action=android.intent.action.SENDTO;package=com.google.android.gm;S.browser_fallback_url=${fallback};end`;
+    window.location.href = intentUrl;
+    return;
   }
 
-  return {
-    appUrl: `googlegmail://co?to=${encoded}`,
-    webUrl
+  if (isIOS()) {
+    openWithAppFallback(
+      `googlegmail:///co?to=${encoded}`,
+      webUrl,
+      mailtoUrl
+    );
+    return;
+  }
+
+  window.location.href = webUrl;
+}
+
+/**
+ * @param {HTMLElement} container
+ * @param {HTMLElement|null} linkEl
+ * @param {() => void} action
+ * @param {string} webUrl
+ */
+function bindTapAction(container, linkEl, action, webUrl) {
+  if (!container || !webUrl) return;
+
+  if (linkEl) {
+    linkEl.href = webUrl;
+    linkEl.setAttribute('rel', 'noopener noreferrer');
+  }
+
+  if (!isMobileDevice()) {
+    if (linkEl) linkEl.setAttribute('target', '_blank');
+    return;
+  }
+
+  if (linkEl) linkEl.removeAttribute('target');
+
+  let lastTrigger = 0;
+
+  const handleActivate = (event) => {
+    if (event.target.closest('.copy-btn, .action-btn, button')) return;
+    if (event.type === 'click' && Date.now() - lastTrigger < 450) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    lastTrigger = Date.now();
+    action();
   };
+
+  container.addEventListener('click', handleActivate, { passive: false });
+  container.addEventListener('touchend', handleActivate, { passive: false });
+
+  if (linkEl) {
+    linkEl.addEventListener('click', handleActivate, { passive: false });
+    linkEl.addEventListener('touchend', handleActivate, { passive: false });
+  }
 }
 
 /**
@@ -148,22 +211,9 @@ function getSocialAppUrl(platform, webUrl) {
  * @param {string} webUrl
  */
 function bindDeepLink(element, appUrl, webUrl) {
-  if (!element || !webUrl) return;
-
-  element.href = webUrl;
-  element.setAttribute('rel', 'noopener noreferrer');
-
-  if (!isMobileDevice()) {
-    element.setAttribute('target', '_blank');
-    return;
-  }
-
-  element.removeAttribute('target');
-
-  element.addEventListener('click', (event) => {
-    event.preventDefault();
+  bindTapAction(element, element, () => {
     openWithAppFallback(appUrl, webUrl);
-  });
+  }, webUrl);
 }
 
 /**
@@ -171,11 +221,18 @@ function bindDeepLink(element, appUrl, webUrl) {
  */
 export function initializeDeepLinks() {
   const data = getCardData();
+  const webUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.email || '')}`;
 
+  const emailRow = document.getElementById('emailContactRow');
   const emailLink = document.getElementById('emailLink');
-  if (emailLink && data.email) {
-    const gmail = getGmailLinks(data.email);
-    bindDeepLink(emailLink, gmail.appUrl, gmail.webUrl);
+
+  if (emailRow && data.email) {
+    bindTapAction(
+      emailRow,
+      emailLink,
+      () => openGmailCompose(data.email),
+      webUrl
+    );
   }
 
   const social = data.social || {};
@@ -189,13 +246,13 @@ export function initializeDeepLinks() {
   };
 
   Object.entries(platformMap).forEach(([key, platform]) => {
-    const webUrl = social[key];
-    if (!webUrl) return;
+    const socialWebUrl = social[key];
+    if (!socialWebUrl) return;
 
     const link = document.querySelector(`[data-social="${platform}"]`);
     if (!link) return;
 
-    const appUrl = getSocialAppUrl(platform, webUrl);
-    bindDeepLink(link, appUrl || webUrl, webUrl);
+    const appUrl = getSocialAppUrl(platform, socialWebUrl);
+    bindDeepLink(link, appUrl || socialWebUrl, socialWebUrl);
   });
 }

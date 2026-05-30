@@ -2,7 +2,7 @@
  * Service Worker — Digital Business Card (Layla Hassan)
  * Bump CACHE_VERSION on every deploy that changes HTML/JS/CSS.
  */
-const CACHE_VERSION = 'dbc-layla-pwa-v3';
+const CACHE_VERSION = 'dbc-layla-pwa-v4';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
