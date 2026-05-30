@@ -1,0 +1,11 @@
+{
+  "name": "dbc-layla-card",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

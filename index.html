@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Digital business card for Layla Hassan - Product Designer based in Cairo, Egypt. Contact: la.hassan@gmail.com | WhatsApp available.">
+  <meta name="author" content="Eng. Eslam Osama Saad - EOPeak">
+  <meta name="theme-color" content="#7FC9C3">
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script src="/js/pwa.js"></script>
+  <script defer src="/js/components/InstallBanner.js?v=1"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Layla Hassan">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=yes">
+
+  <script>
+    (function () {
+      try {
+        var themePref = localStorage.getItem('dbc-layla-theme') || 'system';
+        var lang = localStorage.getItem('dbc-layla-lang') || 'en';
+        var resolved = themePref === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : themePref;
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      } catch (e) { /* noop */ }
+    })();
+  </script>
+  <title>Digital Business Card - Layla Hassan</title>
+
+  <link rel="canonical" href="" id="canonical-link">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Layla Hassan - Product Designer" id="og-title">
+  <meta property="og:description" content="Connect with Layla Hassan, Product Designer in Cairo, Egypt." id="og-description">
+  <meta property="og:url" content="" id="og-url">
+  <meta property="og:image" content="/assets/owner.webp" id="og-image">
+  <meta property="og:image:alt" content="Layla Hassan - Product Designer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Layla Hassan - Product Designer" id="twitter-title">
+  <meta name="twitter:description" content="Connect with Layla Hassan, Product Designer in Cairo, Egypt." id="twitter-description">
+  <meta name="twitter:image" content="/assets/owner.webp" id="twitter-image">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/icons/favicon/png/android-chrome-192x192.png">
+
+  <link rel="preload" href="/assets/owner.webp" as="image" type="image/webp" fetchpriority="high">
+  
+  <!-- Preconnect to external resources for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Application Styles -->
+  <link rel="stylesheet" href="/styles/variables.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/decorations.css">
+  <link rel="stylesheet" href="/styles/card.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/animations.css">
+  <link rel="stylesheet" href="/styles/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- PWA Install Banner -->
+  <div id="install-banner" class="install-banner" role="dialog" aria-labelledby="install-banner-title" aria-hidden="true" hidden>
+    <div class="install-banner__inner">
+      <button type="button" class="install-banner__close" id="install-banner-close" aria-label="Dismiss install prompt">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <h2 class="install-banner__title" id="install-banner-title">Install Layla's Card</h2>
+      <p class="install-banner__text" id="install-banner-text">Save this card to your home screen for instant access.</p>
+      <p class="install-banner__guide" id="install-banner-guide" hidden></p>
+      <div class="install-banner__actions">
+        <button type="button" class="install-banner__btn install-banner__btn--secondary" id="install-banner-not-now">Not now</button>
+        <button type="button" class="install-banner__btn install-banner__btn--primary" id="install-banner-install">Install</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Decorations Container -->
+  <div class="bg-decoration" aria-hidden="true" id="bg-decoration">
+    <!-- Decorative elements generated via JavaScript -->
+  </div>
+
+  <!-- Main Card Container -->
+  <main class="card" id="main-content">
+    <!-- Decorative Header -->
+    <header class="card-header" aria-hidden="true"></header>
+
+    <!-- Avatar -->
+    <div class="avatar-container" id="avatarShell" data-has-video="false">
+      <div class="avatar-frame">
+        <img id="avatar" class="avatar" src="/assets/owner.webp" alt="Layla Hassan - Product Designer portrait" width="104" height="104" decoding="async">
+      </div>
+      <button type="button" class="avatar-play-btn" id="openVideoBtn" aria-controls="videoModal" aria-label="Play design studio introduction" hidden>
+        <i class="fa fa-play" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Card Content -->
+    <div class="card-content">
+      <!-- Name and Title -->
+      <section class="name-container">
+        <h1 class="name" id="personName" aria-label="Layla Hassan"></h1>
+        <p class="title" data-i18n="title">Product Designer</p>
+      </section>
+
+      <div class="utility-actions" aria-label="Card utilities">
+        <button type="button" class="utility-btn" id="qrCodeBtn" aria-label="View QR Code">
+          <i class="fa fa-qrcode" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="utility-btn" id="saveContactBtn" aria-label="Save contact as vCard">
+          <i class="fa fa-address-card" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="utility-btn" id="shareCardBtn" aria-label="Share this digital business card">
+          <i class="fa fa-share-nodes" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="utility-btn utility-btn--theme" id="themeToggle" aria-label="Theme">
+          <i class="fa-solid fa-circle-half-stroke" id="themeIcon" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="utility-btn utility-btn--lang" id="languageToggle" aria-label="Switch language to Arabic">
+          <span class="lang-btn__text" id="languageToggleText">AR</span>
+        </button>
+      </div>
+
+      <!-- Contact Information -->
+      <section class="contact-section">
+        <address class="contact-list">
+          <!-- WhatsApp Contact - Opens WhatsApp chat in new tab -->
+          <div class="contact-item-wrapper">
+            <a href="https://wa.me/201234567890" target="_blank" rel="noopener noreferrer" class="contact-item" id="whatsappLink" aria-label="Contact via WhatsApp">
+            <div class="icon-wrapper mint">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </div>
+              <span class="contact-text contact-text--ltr" dir="ltr">+20 123 456 7890</span>
+          </a>
+            <div class="contact-actions">
+              <a href="tel:+201234567890" class="action-btn sky" id="callPhoneBtn" aria-label="Call phone number">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </a>
+              <button class="copy-btn mint" id="copyPhoneBtn" data-copy-text="+20 123 456 7890" aria-label="Copy phone number">
+                <i class="fa fa-copy" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Email Contact - Opens Gmail compose in new tab -->
+          <div class="contact-item-wrapper">
+            <a href="https://mail.google.com/mail/?view=cm&to=la.hassan@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-item" id="emailLink" aria-label="Send email via Gmail">
+            <div class="icon-wrapper lavender">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+              <span class="contact-text contact-text--ltr contact-text--wrap" dir="ltr">la.hassan@gmail.com</span>
+          </a>
+            <button class="copy-btn lavender" id="copyEmailBtn" data-copy-text="la.hassan@gmail.com" aria-label="Copy email address">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+            </button>
+          </div>
+          
+          <!-- Portfolio Website - Opens website in new tab -->
+          <div class="contact-item-wrapper">
+            <a href="https://laylahassan.design" target="_blank" rel="noopener noreferrer" class="contact-item" id="websiteLink" aria-label="Visit portfolio website">
+            <div class="icon-wrapper sky">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+            </div>
+              <span class="contact-text contact-text--ltr contact-text--wrap" dir="ltr">laylahassan.design</span>
+          </a>
+          </div>
+          
+          <!-- Location - Egypt -->
+          <div class="contact-item-wrapper">
+            <a href="https://www.google.com/maps/place/Cairo,+Egypt" target="_blank" rel="noopener noreferrer" class="contact-item" id="mapsLink" aria-label="View location on Google Maps">
+            <div class="icon-wrapper coral">
+                <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+              <span class="contact-text contact-text--locale" data-i18n="location">Cairo, Egypt</span>
+          </a>
+          </div>
+        </address>
+      </section>
+
+      <!-- Social Links -->
+      <nav class="social-section">
+        <div class="social-links">
+          <a href="https://instagram.com/layladesigns" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://tiktok.com/@layladesigns" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+            <i class="fab fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a href="https://x.com/LaylaDesigns" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+            <i class="fab fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="https://linkedin.com/in/laylahassan" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.behance.net/layladesigns" target="_blank" rel="noopener noreferrer" class="social-link" id="behanceLink" aria-label="Behance">
+            <i class="fab fa-behance" aria-hidden="true"></i>
+          </a>
+        </div>
+        <p class="slogan">
+          <span class="slogan-word pink" data-i18n-slogan="0">Design.</span>
+          <span class="slogan-word lavender" data-i18n-slogan="1">Create.</span>
+          <span class="slogan-word sky" data-i18n-slogan="2">Inspire.</span>
+        </p>
+      </nav>
+    </div>
+  </main>
+
+  <!-- QR Code Modal -->
+  <div class="modal" id="qrModal" aria-hidden="true" role="dialog" aria-labelledby="qrModalTitle">
+    <div class="modal-overlay" id="qrModalOverlay"></div>
+    <div class="modal-content" role="document">
+      <div class="modal-header">
+        <h2 class="modal-title" id="qrModalTitle" data-i18n="qrModalTitle">Scan QR Code</h2>
+        <button class="modal-close" id="qrModalClose" aria-label="Close QR Code modal">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="qr-container">
+        <img src="/assets/MYQR.png" alt="QR Code for Layla Hassan - Product Designer" class="qr-image" id="qrImage" width="280" height="280" loading="lazy" decoding="async">
+      </div>
+      <button class="qr-download-btn" id="qrDownloadBtn" aria-label="Download QR Code">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <span data-i18n="qrDownload">Download QR Code</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Showcase Video Modal -->
+  <div class="modal modal--video" id="videoModal" aria-hidden="true" role="dialog" aria-labelledby="videoModalTitle" aria-describedby="videoCaption">
+    <div class="modal-overlay" id="videoModalOverlay"></div>
+    <div class="modal-content modal-content--video" role="document">
+      <div class="modal-header modal-header--video">
+        <button class="modal-close" id="videoModalClose" aria-label="Close introduction video">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <p class="video-modal-eyebrow" id="videoEyebrow">From My Studio</p>
+        <h2 class="modal-title video-modal-title" id="videoModalTitle">Design, In Motion</h2>
+      </div>
+      <p class="video-modal-caption" id="videoCaption">A glimpse into how I shape products from first sketch to polished experience.</p>
+      <div class="video-embed-wrap">
+        <iframe
+          id="videoEmbedFrame"
+          class="video-embed"
+          title="Design studio introduction"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          hidden
+        ></iframe>
+        <video id="videoFilePlayer" class="video-file" controls playsinline hidden></video>
+      </div>
+      <p class="video-unavailable" id="videoUnavailable" hidden>This introduction is being updated. Please check back shortly.</p>
+    </div>
+  </div>
+
+  <!-- Application Scripts (ES6 Modules) -->
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

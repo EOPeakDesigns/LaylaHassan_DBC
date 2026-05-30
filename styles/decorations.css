@@ -1,0 +1,83 @@
+/* 
+  === Background Decorations ===
+  Digital Business Card - Mary Kelsey
+  
+  Styles for decorative background elements (sparkles, stars, hearts).
+  These elements are generated dynamically via JavaScript.
+*/
+
+/* Background Decoration Container */
+.bg-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Sparkle Elements */
+.sparkle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  border-radius: var(--border-radius-full);
+  opacity: 0.4;
+}
+
+/* Star Elements */
+.star {
+  position: absolute;
+  opacity: 0.3;
+  transform: rotate(45deg);
+}
+
+.star::before, .star::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.star::before {
+  transform: rotate(30deg);
+}
+
+.star::after {
+  transform: rotate(60deg);
+}
+
+/* Heart Elements */
+.heart {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-pink);
+  transform: rotate(-45deg);
+  opacity: 0.25;
+}
+
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -8px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 8px;
+}
+

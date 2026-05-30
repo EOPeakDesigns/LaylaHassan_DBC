@@ -1,0 +1,67 @@
+/* 
+  === Animations & Keyframes ===
+  Digital Business Card - Mary Kelsey
+  
+  Animation definitions and motion preferences.
+*/
+
+/* Card Fade In Animation */
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Avatar Pop In Animation */
+@keyframes avatarPopIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card, .avatar-container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .avatar-container {
+    transform: translateX(-50%);
+  }
+  
+  .contact-item:hover,
+  .contact-item:focus,
+  .social-link:hover,
+  .social-link:focus {
+    transform: none;
+  }
+
+  .install-banner {
+    animation: none;
+  }
+}
+
+/* PWA Install Banner Slide In */
+@keyframes installBannerSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+

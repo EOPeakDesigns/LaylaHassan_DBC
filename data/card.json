@@ -1,0 +1,42 @@
+{
+  "lang": "en",
+  "fullName": "Layla Hassan",
+  "title": "Product Designer",
+  "email": "la.hassan@gmail.com",
+  "phone": "+201234567890",
+  "phoneDisplay": "+20 123 456 7890",
+  "whatsapp": "201234567890",
+  "website": "https://laylahassan.design",
+  "websiteDisplay": "laylahassan.design",
+  "location": "Cairo, Egypt",
+  "organization": "Layla Hassan Design",
+  "slogan": "Design. Create. Inspire.",
+  "shareUrl": "",
+  "profileImage": "assets/owner.webp",
+  "qrImage": "assets/MYQR.png",
+  "social": {
+    "instagram": "https://instagram.com/layladesigns",
+    "tiktok": "https://tiktok.com/@layladesigns",
+    "facebook": "https://facebook.com",
+    "x": "https://x.com/LaylaDesigns",
+    "linkedin": "https://linkedin.com/in/laylahassan",
+    "behance": "https://www.behance.net/layladesigns"
+  },
+  "showcaseVideo": {
+    "enabled": true,
+    "type": "embed",
+    "embedUrl": "https://www.youtube.com/embed/2Ri8f-wqonE?playsinline=1&rel=0&modestbranding=1",
+    "fileSrc": "",
+    "poster": ""
+  },
+  "labels": {
+    "installTitle": "Install Layla's Card",
+    "installText": "Save this card to your home screen for instant access.",
+    "installApp": "Install",
+    "installDismiss": "Not now",
+    "installClose": "Dismiss install prompt",
+    "installDialogAria": "Install app prompt",
+    "installGuideIOS": "Tap Share, then Add to Home Screen.",
+    "installGuideAndroid": "Tap the menu (⋮), then Install app."
+  }
+}
